@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>NAME: Sahana S</H3>
+<H3>REGISTER NO: 212225230236</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>DATE: 30.10.2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,46 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+# Importing Libraries
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+df=pd.read_csv("Churn_Modelling.csv",index_col="RowNumber")         # Read the dataset from drive
+df.head()
+ # Finding Missing Values
+df.isnull().sum()
+
+ # Check For Duplicates
+print(df.duplicated().sum())
+
+# Remove Unnecessary Columns
+df=df.drop(['Surname', 'Geography','Gender'], axis=1) 
+# Normalize the dataset
+scaler=StandardScaler()                                
+df=pd.DataFrame(scaler.fit_transform(df))
+df.head()
+
+# Split the dataset into input and output
+X,Y=df.iloc[:,:-1].values ,df.iloc[:,-1].values  
+
+ # Splitting the data for training & Testing
+print('Input:\n',X,'\nOutput:\n',Y) 
+Xtrain,Xtest,Ytrain,Ytest = train_test_split(X, Y, test_size=0.2)  
+
+# X Train and Test
+print("Xtrain:\n" ,Xtrain, "\nXtest:\n", Xtest)    
+
+# Y Train and Test
+print("\nYtrain:\n" ,Ytrain, "\nYtest:\n", Ytest)
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+<img width="1377" height="567" alt="image" src="https://github.com/user-attachments/assets/3f27b447-778a-405e-a846-a6d5b7f1bfac" />
+<img width="822" height="343" alt="image" src="https://github.com/user-attachments/assets/bbd242a7-e534-40c7-87b8-e3a9c2d29196" />
+<img width="722" height="622" alt="image" src="https://github.com/user-attachments/assets/f2c04839-827d-4149-93c8-6761f96f008d" />
+<img width="622" height="67" alt="image" src="https://github.com/user-attachments/assets/542d1cee-041a-4f6b-af8a-93ea5712d771" />
+
 
 
 ## RESULT:
